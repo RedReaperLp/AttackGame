@@ -1,0 +1,9 @@
+name: AttackGame
+version: '${version}'
+main: com.github.redreaperlp.attackgame.AttackGame
+api-version: 1.19
+authors: [ RedReaperLp ]
+website: https://github.com/redreaperlp
+commands:
+  attackgame:
+
