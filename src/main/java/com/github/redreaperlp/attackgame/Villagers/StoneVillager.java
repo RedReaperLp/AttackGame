@@ -2,6 +2,7 @@ package com.github.redreaperlp.attackgame.Villagers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.MerchantRecipe;
@@ -20,7 +21,7 @@ public class StoneVillager {
         recipes.add(villagerManager.createRecipe(Material.COBBLED_DEEPSLATE, 9, "§3Double Compressed Cobblestone", List.of("§5Doppelt Komprimierter Bruchstein"), Material.DEEPSLATE, 1, "§eTriple Compressed Cobblestone", List.of("§5Dreifach Komprimierter Bruchstein")));
         recipes.add(villagerManager.createRecipe(Material.DEEPSLATE, 9, "§eTriple Compressed Cobblestone", List.of("§5Dreifach Komprimierter Bruchstein"), Material.POLISHED_DEEPSLATE, 1, "§6Quadruple Compressed Cobblestone", List.of("§5Vierfach Komprimierter Bruchstein")));
         recipes.add(villagerManager.createRecipe(Material.POLISHED_DEEPSLATE, 9, "§6Quadruple Compressed Cobblestone", List.of("§5Vierfach Komprimierter Bruchstein"), Material.NETHERITE_INGOT, 1, "§4Quintuple Compressed Cobblestone", List.of("§5Fünffach Komprimierter Bruchstein")));
-
+        recipes.add(villagerManager.createToolRecipe(Material.STONE_PICKAXE, List.of(Enchantment.DIG_SPEED, Enchantment.DURABILITY), List.of(4, 15), "§6Stoneys Nice", List.of("§eYour first better mining tool"), Material.DEEPSLATE, "§eTriple Compressed Cobblestone", List.of("§5Dreifach Komprimierter Bruchstein"), 2));
         Merchant merchant = Bukkit.createMerchant("§cStoney");
         merchant.setRecipes(recipes);
 

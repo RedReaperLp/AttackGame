@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -34,6 +35,12 @@ public class AdvancementListener implements Listener {
             container.set(key, PersistentDataType.STRING, "firstjoin");
             player.playSound(player.getLocation(), "minecraft:entity.player.levelup", 1, 1);
 
+            ItemStack instantGrowth = new ItemStack(Material.BONE_MEAL);
+            ItemMeta instantGrowthMeta = instantGrowth.getItemMeta();
+            instantGrowthMeta.setDisplayName("§dInstant tree Growth");
+            instantGrowth.setItemMeta(instantGrowthMeta);
+
+            player.getInventory().setItem(0, instantGrowth);
             player.getInventory().setItem(9, new ItemStack(Material.ICE, 1));
             player.getInventory().setItem(10, new ItemStack(Material.LAVA_BUCKET, 1));
             player.getInventory().setItem(13, new ItemStack(Material.MANGROVE_PROPAGULE, 1));
@@ -185,5 +192,17 @@ public class AdvancementListener implements Listener {
 
     public void playSound(Player player) {
         player.playSound(player.getLocation(), "minecraft:entity.player.levelup", 1, 1);
+    }
+
+
+    @EventHandler
+    public void onPlayerLeave(PlayerQuitEvent e) {
+        Player player = e.getPlayer();
+        player.getInventory().clear();
+        PersistentDataContainer container = player.getPersistentDataContainer();
+        NamespacedKey key = new NamespacedKey(plugin, "firstjoin");
+        if (container.has(key)) {
+            container.remove(key);
+        }
     }
 }

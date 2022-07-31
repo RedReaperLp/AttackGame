@@ -4,10 +4,12 @@ import com.github.redreaperlp.attackgame.AttackGame;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
+import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
@@ -15,11 +17,7 @@ import java.util.List;
 public class VillagerManager {
     public boolean checkForVillagerLoc(String name) {
         Location loc = AttackGame.instance.getConfig().getLocation(name);
-        if ( loc == null) {
-            return false;
-        } else {
-            return true;
-        }
+        return loc != null;
     }
 
     public void createVillager(Location loc, String name, Villager.Profession job) {
@@ -53,6 +51,32 @@ public class VillagerManager {
 
         MerchantRecipe recipe = new MerchantRecipe(resultItem, 1000);
         recipe.addIngredient(sellItem);
+
+        return recipe;
+    }
+
+    public MerchantRecipe createToolRecipe(Material toolToCreate, List<Enchantment> enchantments, List<Integer> enchantmentLevel, String displayName , List<String> lore, Material acceptedItem, String acceptedDisplayName, List<String> acceptedLore, int acceptedAmount) {
+        ItemStack tool = new ItemStack(toolToCreate);
+        ItemMeta toolMeta = tool.getItemMeta();
+
+        int enchantmentAmount = enchantments.size();
+        for (int i = 0; i <= enchantmentAmount - 1; i++) {
+            toolMeta.addEnchant(enchantments.get(i), enchantmentLevel.get(i), true);
+        }
+
+        toolMeta.setDisplayName(displayName);
+        toolMeta.setLore(lore);
+        tool.setItemMeta(toolMeta);
+
+        MerchantRecipe recipe = new MerchantRecipe(tool, 10000);
+
+        ItemStack acceptItem = new ItemStack(acceptedItem, acceptedAmount);
+        ItemMeta acceptedMeta = acceptItem.getItemMeta();
+        acceptedMeta.setDisplayName(acceptedDisplayName);
+        acceptedMeta.setLore(acceptedLore);
+        acceptItem.setItemMeta(acceptedMeta);
+
+        recipe.addIngredient(acceptItem);
 
         return recipe;
     }

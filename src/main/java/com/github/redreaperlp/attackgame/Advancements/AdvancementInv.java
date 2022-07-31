@@ -31,12 +31,11 @@ public class AdvancementInv {
     public void Inventory(Player player) {
         Inventory inv = Bukkit.createInventory(null, 18, "§6Advancements");
         PersistentDataContainer container = player.getPersistentDataContainer();
-        for (String advancement : advancements) {
-            NamespacedKey key = new NamespacedKey(plugin, advancement);
-
+        int advancementSize = advancements.size();
+        for (int i = 0; i <= advancementSize - 1; i++) {
+            NamespacedKey key = new NamespacedKey(plugin, advancements.get(i));
             ItemAdder itemAdder = new ItemAdder();
-            inv.addItem(itemAdder.addItem(key, container));
-
+            inv.setItem(i, itemAdder.addItem(key, container));
         }
         player.openInventory(inv);
     }

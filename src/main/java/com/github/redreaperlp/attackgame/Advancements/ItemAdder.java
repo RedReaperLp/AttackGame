@@ -14,9 +14,7 @@ public class ItemAdder {
         if (key.getKey().equals("placeholder")) {
             ItemStack placeholder = new ItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE);
             ItemMeta placeholderMeta = placeholder.getItemMeta();
-            placeholderMeta.setDisplayName("");
-            int xplaceholder = 100000 + (int) (Math.random() * ((999999 - 100000) + 1));
-            placeholderMeta.setLore(List.of("§k" + xplaceholder));
+            placeholderMeta.setDisplayName(" ");
             placeholder.setItemMeta(placeholderMeta);
             return placeholder;
         }
@@ -99,19 +97,16 @@ public class ItemAdder {
                     ItemStack barrier = new ItemStack(Material.BARRIER);
                     ItemMeta barrierMeta = barrier.getItemMeta();
                     barrierMeta.setDisplayName("§c[Unknown Advancement]");
-                    int x = 100000 + (int) (Math.random() * ((999999 - 100000) + 1));
-                    barrierMeta.setLore(List.of("§k" + x));
                     barrier.setItemMeta(barrierMeta);
                     return barrier;
 
 
             }
         } else {
-            int x = 100000 + (int) (Math.random() * ((999999 - 100000) + 1));
             ItemStack item = new ItemStack(Material.GRAY_DYE);
             ItemMeta itemMeta = item.getItemMeta();
             itemMeta.setDisplayName("§6Not unlocked yet");
-            itemMeta.setLore(List.of("§7???????", "§k" + x));
+            itemMeta.setLore(List.of("§7???????"));
 
             item.setItemMeta(itemMeta);
 
