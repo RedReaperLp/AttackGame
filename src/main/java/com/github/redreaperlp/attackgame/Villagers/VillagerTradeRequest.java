@@ -1,15 +1,10 @@
 package com.github.redreaperlp.attackgame.Villagers;
 
 import com.github.redreaperlp.attackgame.AttackGame;
-import io.papermc.paper.event.player.PlayerTradeEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.VillagerAcquireTradeEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.inventory.Merchant;
 
 public class VillagerTradeRequest implements Listener {
 
@@ -21,7 +16,7 @@ public class VillagerTradeRequest implements Listener {
 
     @EventHandler
     public void onTradeRequest(PlayerInteractEntityEvent e) {
-        StoneVillager stoneVillager = new StoneVillager();
+        OpenVillagers stoneVillager = new OpenVillagers();
         String name = "";
         if (e.getPlayer() == null) {
             return;
@@ -31,11 +26,15 @@ public class VillagerTradeRequest implements Listener {
             if (name == null) {
                 return;
             }
+            Player player = e.getPlayer();
             switch (name) {
                 case "§cStoney":
                     e.setCancelled(true);
-                    Player player = e.getPlayer();
                     stoneVillager.openStoney(player);
+                    break;
+                case "§eImker":
+                    e.setCancelled(true);
+                    stoneVillager.openImker(player);
                     break;
                 default:
                     break;

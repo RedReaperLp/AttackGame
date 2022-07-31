@@ -84,12 +84,12 @@ public class ItemAdder {
                 case "quintuplecompressed":
                     ItemStack quintuplecompressed = new ItemStack(Material.NETHERITE_INGOT);
                     ItemMeta quintuplecompressedMeta = quintuplecompressed.getItemMeta();
-                    quintuplecompressedMeta.setDisplayName("§a[Quintuple Compressed Cobblestone]");
+                    quintuplecompressedMeta.setDisplayName("§a[Dense Ingot]");
                     quintuplecompressedMeta.setLore(List.of(
                             "§e----------------------------",
                             "§6advancement granted for trading",
                             "§69 quadruple compressed cobblestone",
-                            "§6to a §4quintuple compressed cobblestone",
+                            "§6to a §4Dense Ingot",
                             "§e----------------------------"));
                     quintuplecompressed.setItemMeta(quintuplecompressedMeta);
                     return quintuplecompressed;

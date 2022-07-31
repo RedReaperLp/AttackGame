@@ -1,6 +1,7 @@
 package com.github.redreaperlp.attackgame.Commands;
 
 import com.github.redreaperlp.attackgame.Advancements.AdvancementInv;
+import com.github.redreaperlp.attackgame.Advancements.AdvancementListener;
 import com.github.redreaperlp.attackgame.AttackGame;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -50,6 +51,11 @@ public class MainCommand implements CommandExecutor, TabCompleter {
                     AdvancementInv advancementInv = new AdvancementInv(this.plugin);
                     advancementInv.Inventory(player);
                 }
+                break;
+            case "remadv":
+                AdvancementListener advancementListener = new AdvancementListener(this.plugin);
+                advancementListener.doIt = !advancementListener.doIt;
+                break;
         }
         return true;
     }
@@ -58,7 +64,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         String value = args[0].toLowerCase(Locale.ROOT);
         if (args.length == 1) {
-            List<String> completions = Stream.of("setVillagerSpawn", "advancements").filter(s -> s.toLowerCase(Locale.ROOT).startsWith(value)).toList();
+            List<String> completions = Stream.of("setVillagerSpawn", "advancements", "remAdv").filter(s -> s.toLowerCase(Locale.ROOT).startsWith(value)).toList();
             return completions;
         }
         if (args.length == 2) {

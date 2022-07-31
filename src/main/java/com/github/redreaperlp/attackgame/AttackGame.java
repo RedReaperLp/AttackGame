@@ -2,11 +2,10 @@ package com.github.redreaperlp.attackgame;
 
 import com.github.redreaperlp.attackgame.Advancements.AdvancementListener;
 import com.github.redreaperlp.attackgame.Commands.MainCommand;
+import com.github.redreaperlp.attackgame.Recepies.Recepies;
 import com.github.redreaperlp.attackgame.Villagers.NotToDoWithVillager;
 import com.github.redreaperlp.attackgame.Villagers.VillagerManager;
 import com.github.redreaperlp.attackgame.Villagers.VillagerTradeRequest;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.title.TitlePart;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.ConsoleCommandSender;
@@ -41,6 +40,9 @@ public final class AttackGame extends JavaPlugin implements Listener {
 
         getCommand("attackgame").setExecutor(new MainCommand(this));
         getCommand("attackgame").setTabCompleter(new MainCommand(this));
+
+        Recepies recepies = new Recepies(this);
+        recepies.addRecepie();
 
 
         VillagerManager villagerManager = new VillagerManager();

@@ -1,6 +1,7 @@
 package com.github.redreaperlp.attackgame.Villagers;
 
 import com.github.redreaperlp.attackgame.AttackGame;
+import net.md_5.bungee.api.chat.hover.content.Item;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,6 +12,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
 
@@ -78,6 +82,27 @@ public class VillagerManager {
 
         recipe.addIngredient(acceptItem);
 
+        return recipe;
+    }
+
+    public MerchantRecipe createPotionRecipe(List<PotionEffectType> effectTypes, List<Integer> effectLevel, List<Integer> duration, String displayName, List<String> lore, Material acceptedItem, String acceptedDisplayName, List<String> acceptedLore, int acceptedAmount) {
+        ItemStack potion = new ItemStack(Material.POTION);
+        PotionMeta potionMeta = (PotionMeta) potion.getItemMeta();
+        for (int i = 0; i <= effectTypes.size() - 1; i++) {
+            potionMeta.addCustomEffect(new PotionEffect(effectTypes.get(i), duration.get(i), effectLevel.get(i)), true);
+        }
+        potionMeta.setDisplayName(displayName);
+        potionMeta.setLore(lore);
+        potion.setItemMeta(potionMeta);
+
+        MerchantRecipe recipe = new MerchantRecipe(potion, 10000);
+        ItemStack acceptItem = new ItemStack(acceptedItem, acceptedAmount);
+        ItemMeta acceptedMeta = acceptItem.getItemMeta();
+        acceptedMeta.setDisplayName(acceptedDisplayName);
+        acceptedMeta.setLore(acceptedLore);
+        acceptItem.setItemMeta(acceptedMeta);
+
+        recipe.addIngredient(acceptItem);
         return recipe;
     }
 }
