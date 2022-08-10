@@ -69,25 +69,6 @@ public class OpenVillagers {
         recipes.add(villagerManager.createRecipe(Material.DEEPSLATE, 1, "§eTriple Compressed Cobblestone", List.of("§5Dreifach Komprimierter Bruchstein"), Material.NETHER_WART, 1, null, null));
         recipes.add(villagerManager.createRecipe(Material.COBBLED_DEEPSLATE, 1, "§3Double Compressed Cobblestone", List.of("§5Doppelt Komprimierter Bruchstein"), Material.SOUL_SAND, 1, null, null));
 
-    /*
-        PlayerProfile profile = Bukkit.createProfile("RedReaperLp");
-        PlayerTextures textures = profile.getTextures();
-
-        try {
-            URL url = new URL("http://textures.minecraft.net/texture/3e6b76ec5af332bee74cae3ab47f4172ed242c53f8374c47cad719820de26688");
-            textures.setSkin(url);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-        profile.setTextures(textures);
-
-        ItemStack itemStack = new ItemStack(Material.PLAYER_HEAD);
-        SkullMeta meta = (SkullMeta) itemStack.getItemMeta();
-        meta.setOwnerProfile(profile);
-        itemStack.setItemMeta(meta);
-
-        recipes.add(createRecipe(itemStack, itemStack)); */
-
         Merchant merchant = Bukkit.createMerchant("§cSaved Grobian");
         merchant.setRecipes(recipes);
 
