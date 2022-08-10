@@ -7,3 +7,28 @@ website: https://github.com/redreaperlp
 commands:
   attackgame:
 
+permissions:
+  attackgame.admin:
+    default: op
+    children:
+      attackgame.admintools: true
+
+  attackgame.admintools:
+    default: op
+
+  attackgame.admintools.stoney:
+    default: op
+
+  attackgame.admintools.imker:
+    default: op
+
+  attackgame.admintools.grobian:
+    default: op
+
+  attackgame.admintools.meloger:
+    default: op
+
+
+
+
+

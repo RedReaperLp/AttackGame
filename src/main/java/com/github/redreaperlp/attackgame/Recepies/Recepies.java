@@ -35,14 +35,12 @@ public class Recepies {
         Bukkit.addRecipe(gravelRecipe);
     }
 
-    public void discoverRecepies(Player player){
+    public void overRecepies(Player player) {
         List<String> recepies = List.of("Sand", "Gravel");
 
         for (String recepie : recepies) {
             NamespacedKey key = new NamespacedKey(plugin, recepie);
-            if (!player.discoverRecipe(key)) {
-                player.discoverRecipe(key);
-            }
+            player.discoverRecipe(key);
         }
     }
 }

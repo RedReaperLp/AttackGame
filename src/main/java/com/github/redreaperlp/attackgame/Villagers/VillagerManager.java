@@ -1,7 +1,6 @@
 package com.github.redreaperlp.attackgame.Villagers;
 
 import com.github.redreaperlp.attackgame.AttackGame;
-import net.md_5.bungee.api.chat.hover.content.Item;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -10,7 +9,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
-import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
@@ -19,6 +17,13 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.List;
 
 public class VillagerManager {
+
+    public AttackGame plugin;
+
+    public VillagerManager(AttackGame ourMain) {
+        plugin = ourMain;
+    }
+
     public boolean checkForVillagerLoc(String name) {
         Location loc = AttackGame.instance.getConfig().getLocation(name);
         return loc != null;
@@ -38,6 +43,9 @@ public class VillagerManager {
         villager.setCustomName(name);
         villager.setProfession(job);
         villager.setAI(false);
+
+        plugin.getConfig().set(name, loc);
+        plugin.saveConfig();
     }
 
     public MerchantRecipe createRecipe(Material sellItems, int sellAmount, String sellDisplayName, List<String> sellLore, Material results, int resultAmount, String resultSisplayName, List<String> resultLore) {
@@ -59,7 +67,7 @@ public class VillagerManager {
         return recipe;
     }
 
-    public MerchantRecipe createToolRecipe(Material toolToCreate, List<Enchantment> enchantments, List<Integer> enchantmentLevel, String displayName , List<String> lore, Material acceptedItem, String acceptedDisplayName, List<String> acceptedLore, int acceptedAmount) {
+    public MerchantRecipe createToolRecipe(Material toolToCreate, List<Enchantment> enchantments, List<Integer> enchantmentLevel, String displayName, List<String> lore, Material acceptedItem, String acceptedDisplayName, List<String> acceptedLore, int acceptedAmount) {
         ItemStack tool = new ItemStack(toolToCreate);
         ItemMeta toolMeta = tool.getItemMeta();
 
@@ -104,5 +112,27 @@ public class VillagerManager {
 
         recipe.addIngredient(acceptItem);
         return recipe;
+    }
+
+    public void spawnVillager() {
+        Location locStoney = plugin.getConfig().getLocation("§cStoney");
+        Location locImker = plugin.getConfig().getLocation("§eImker");
+        Location locSavedGrobian = plugin.getConfig().getLocation("§cSaved Grobian");
+        Location locMeloger = plugin.getConfig().getLocation("§aMeloger");
+
+        if (locStoney != null) {
+            createVillager(locStoney, "§cStoney", Villager.Profession.MASON);
+        } else {
+            plugin.console.sendMessage(plugin.prefix + "§cThe Villager Spawnpoint for Stoney is not set!");
+        }
+        if (locImker != null) {
+            createVillager(locImker, "§eImker", Villager.Profession.FARMER);
+        }
+        if (locSavedGrobian != null) {
+            createVillager(locSavedGrobian, "§cSaved Grobian", Villager.Profession.WEAPONSMITH);
+        }
+        if (locMeloger != null) {
+            createVillager(locMeloger, "§aMeloger", Villager.Profession.FARMER);
+        }
     }
 }

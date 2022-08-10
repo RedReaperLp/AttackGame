@@ -16,7 +16,7 @@ public class VillagerTradeRequest implements Listener {
 
     @EventHandler
     public void onTradeRequest(PlayerInteractEntityEvent e) {
-        OpenVillagers stoneVillager = new OpenVillagers();
+        OpenVillagers openVillagers = new OpenVillagers();
         String name = "";
         if (e.getPlayer() == null) {
             return;
@@ -30,12 +30,19 @@ public class VillagerTradeRequest implements Listener {
             switch (name) {
                 case "§cStoney":
                     e.setCancelled(true);
-                    stoneVillager.openStoney(player);
+                    openVillagers.openStoney(player);
                     break;
                 case "§eImker":
                     e.setCancelled(true);
-                    stoneVillager.openImker(player);
+                    openVillagers.openImker(player);
                     break;
+                case "§cSaved Grobian":
+                    e.setCancelled(true);
+                    openVillagers.openSavedGrobian(player);
+                    break;
+                case "§aMeloger":
+                    e.setCancelled(true);
+                    openVillagers.openMeloger(player);
                 default:
                     break;
             }
