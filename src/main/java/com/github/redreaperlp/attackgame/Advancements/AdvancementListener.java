@@ -406,6 +406,9 @@ public class AdvancementListener implements Listener {
     public void cancelInvClick(InventoryClickEvent e) {
         List<String> titles = Stream.of("§6Advancements §cStoney", "§6Advancements §eImker", "§6Advancements §cSaved Grobian", "§6Advancements §aMeloger").toList();
         if (titles.contains(e.getView().getTitle())) {
+            if (e.getCurrentItem() == null) {
+                return;
+            }
             e.setCancelled(true);
 
             ItemStack imker = new ItemStack(Material.HONEY_BLOCK);
